@@ -1,1 +1,39 @@
-export const actions = {}
+import authService from '../../services/AuthService';
+
+export const actions = {
+    async register(context, userData) {
+        const response = await authService.register(userData);
+        context.dispatch('handleAuthResponse', response);
+    },
+    async login(context, credentials) {
+        const response = await authService.login(credentials);
+        context.dispatch('handleAuthResponse', response);
+    },
+    async me(context) {
+        const response = await authService.me();
+        context.dispatch('handleAuthResponse', response)
+    },
+    async logout(context) {
+        const response = await authService.logout();
+        context.dispatch('handleAuthResponse', response);
+    },
+
+    handleAuthResponse(context, response) {
+        const logout = response.logout;
+        const token = response.token;
+        const user = response.user;
+        if (logout) {
+            context.commit('token', '');
+            context.commit('user', {});
+            localStorage.removeItem('token');
+            return;
+        }
+        if (token) {
+            context.commit('token', token);
+            localStorage.setItem('token', token);
+        }
+        if (user) {
+            context.commit('user', user);
+        }
+    }
+}
