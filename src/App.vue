@@ -26,6 +26,7 @@ export default {
 	},
 	methods: {
 		...mapActions('auth', ['me', 'logout']),
+		...mapActions('galleries', ['getGalleries']),
 		async handleLogout() {
 			try {
 				await this.logout();
@@ -36,7 +37,10 @@ export default {
 		},
 	},
 	async created() {
-		if (this.isAuthenticated) await this.me();
+		if (this.isAuthenticated) {
+			await this.me();
+		}
+		// await this.getGalleries();
 	},
 };
 </script>
