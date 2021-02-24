@@ -4,13 +4,6 @@ export const http = axios.create({
     baseURL: 'http://localhost:8000/api'
 })
 
-export const endPoints = {
-    register: () => '/register',
-    login: () => '/login',
-    me: () => '/me',
-    logout: () => '/logout',
-}
-
 http.interceptors.request.use(request => {
     const token = localStorage.getItem('token');
     if (token) request.headers['Authorization'] = 'Bearer ' + token;

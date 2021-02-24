@@ -1,4 +1,11 @@
-import { endPoints, http } from "./HTTP";
+import { http } from "./HTTP";
+
+const endPoints = {
+    register: () => '/register',
+    login: () => '/login',
+    me: () => '/me',
+    logout: () => '/logout',
+}
 
 class AuthService {
     async register(userData) {
