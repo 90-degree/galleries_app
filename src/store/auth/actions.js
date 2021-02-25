@@ -1,4 +1,5 @@
 import authService from '../../services/AuthService';
+import router from "../../router";
 
 export const actions = {
     async register(context, userData) {
@@ -10,8 +11,14 @@ export const actions = {
         context.dispatch('handleAuthResponse', response);
     },
     async me(context) {
-        const response = await authService.me();
-        context.dispatch('handleAuthResponse', response)
+        try {
+            const response = await authService.me();
+            context.dispatch('handleAuthResponse', response)
+        } catch (error) {
+            console.log('actions me', error);
+            router.go();
+        }
+
     },
     async logout(context) {
         const response = await authService.logout();

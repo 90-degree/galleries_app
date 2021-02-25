@@ -32,15 +32,12 @@ export default {
 				await this.logout();
 				this.$router.push('/login');
 			} catch (error) {
-				console.log(error);
+				console.log('app logout', error);
 			}
 		},
 	},
 	async created() {
-		if (this.isAuthenticated) {
-			await this.me();
-		}
-		// await this.getGalleries();
+		if (this.isAuthenticated) await this.me();
 	},
 };
 </script>

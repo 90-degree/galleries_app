@@ -13,6 +13,14 @@ class GalleriesService {
         });
         return response.data;
     }
+    async createGallery(galleryData) {
+        const response = await http.post(endPoints.galleries(), galleryData);
+        return response.data;
+    }
+    async getGallery(id) {
+        const response = await http.get(endPoints.gallery(id));
+        return response.data;
+    }
 }
 
 export default new GalleriesService();
