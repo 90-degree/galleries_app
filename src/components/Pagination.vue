@@ -1,5 +1,5 @@
 <template>
-	<div v-if="!isLastPage" style="height:100px;" class="d-flex align-items-center">
+	<div v-if="isVisible" style="height:100px;" class="d-flex align-items-center">
 		<button @click="next" type="button" class="btn btn-primary mx-auto">Load More...</button>
 	</div>
 </template>
@@ -9,14 +9,11 @@ export default {
 	name: 'pagination',
 	methods: {
 		next() {
-			this.$store.commit('galleries/nextPage');
 			this.$emit('nextPage');
 		},
 	},
-	computed: {
-		isLastPage() {
-			return this.$store.getters['galleries/isLastPage'];
-		},
+	props: {
+		isVisible: Boolean,
 	},
 };
 </script>

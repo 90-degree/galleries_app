@@ -17,9 +17,8 @@ export default {
 	},
 	methods: {
 		search() {
-			this.$store.commit('galleries/searchFilter', this.searchData);
+			this.$emit('onSearch', this.searchData);
 			this.searchData = '';
-			this.$emit('onSearch');
 		},
 	},
 };

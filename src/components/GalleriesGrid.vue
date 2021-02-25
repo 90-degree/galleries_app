@@ -6,13 +6,13 @@
 				<gallery-card :gallery="gallery"></gallery-card>
 			</div>
 		</div>
-		<pagination @nextPage="handleNextPage"></pagination>
+		<pagination @nextPage="handleNextPage" :isVisible="!isLastPage"></pagination>
 	</div>
 </template>
 
 <script>
 import GalleryCard from './GalleryCard.vue';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 import Pagination from './Pagination.vue';
 import SearchForm from './SearchForm.vue';
 export default {
@@ -22,12 +22,14 @@ export default {
 		...mapGetters('galleries', ['galleries', 'isLastPage']),
 	},
 	methods: {
-		...mapActions('galleries', ['getGalleries']),
+		...mapActions('galleries', ['getGalleriesFirstPage', 'getGalleriesNextPage']),
+		...mapMutations('galleries', ['searchFilter']),
 		async handleNextPage() {
-			await this.getGalleries();
+			await this.getGalleriesNextPage();
 		},
-		async handleSearch() {
-			await this.getGalleries(true);
+		async handleSearch(searchData) {
+			this.searchFilter(searchData);
+			await this.getGalleriesFirstPage();
 		},
 	},
 };

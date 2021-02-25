@@ -11,10 +11,10 @@ export default {
 	name: 'Galleries',
 	components: { GalleriesGrid },
 	methods: {
-		...mapActions('galleries', ['getGalleries']),
+		...mapActions('galleries', ['getGalleriesFirstPage']),
 	},
 	created() {
-		this.getGalleries(true);
+		this.getGalleriesFirstPage();
 	},
 };
 </script>
