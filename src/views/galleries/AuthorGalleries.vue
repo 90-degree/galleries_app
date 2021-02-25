@@ -6,21 +6,21 @@
 
 <script>
 import GalleriesGridView from './GalleriesGridView.vue';
-import { mapActions, mapMutations, mapGetters } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 export default {
 	components: { GalleriesGridView },
-	name: 'MyGalleries',
-	computed: {
-		...mapGetters('auth', ['user']),
+	name: 'AuthorGalleries',
+	data() {
+		return {
+			author: this.$route.params.id,
+		};
 	},
 	methods: {
-		...mapActions('auth', ['me']),
 		...mapActions('galleries', ['getGalleriesFirstPage']),
 		...mapMutations('galleries', ['authorFilter']),
 	},
 	async mounted() {
-		if (!this.user.id) await this.me();
-		this.authorFilter(this.user.id);
+		this.authorFilter(this.author);
 		await this.getGalleriesFirstPage();
 	},
 };

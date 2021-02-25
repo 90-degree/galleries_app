@@ -2,7 +2,7 @@
 	<div class="card mt-4">
 		<div class="card-body">
 			<h5 @click="showGallery" class="card-title">{{ gallery.title }}</h5>
-			<h6 class="card-subtitle mb-2 text-muted">{{ author }}</h6>
+			<h6 @click="goToAuthor" class="card-subtitle mb-2 text-muted">{{ author }}</h6>
 			<h6 class="card-subtitle mb-2 text-muted">{{ gallery.created_at }}</h6>
 		</div>
 		<img class="card-img-top" :src="firstImageUrl" alt="Card image cap" />
@@ -27,6 +27,9 @@ export default {
 	methods: {
 		showGallery() {
 			this.$router.push('/galleries/' + this.gallery.id);
+		},
+		goToAuthor() {
+			this.$router.push('/authors/' + this.gallery.user_id);
 		},
 	},
 };

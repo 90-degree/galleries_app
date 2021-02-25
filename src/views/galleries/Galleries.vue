@@ -1,20 +1,22 @@
 <template>
-	<div class="container">
-		<galleries-grid></galleries-grid>
+	<div>
+		<galleries-grid-view></galleries-grid-view>
 	</div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import GalleriesGrid from '../../components/GalleriesGrid';
+import GalleriesGridView from './GalleriesGridView.vue';
+import { mapActions, mapMutations } from 'vuex';
 export default {
-	name: 'Galleries',
-	components: { GalleriesGrid },
+	components: { GalleriesGridView },
+	name: 'AllGalleries',
 	methods: {
 		...mapActions('galleries', ['getGalleriesFirstPage']),
+		...mapMutations('galleries', ['authorFilter']),
 	},
-	created() {
-		this.getGalleriesFirstPage();
+	async created() {
+		this.authorFilter(0);
+		await this.getGalleriesFirstPage();
 	},
 };
 </script>
