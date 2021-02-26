@@ -21,6 +21,10 @@ class GalleriesService {
         const response = await http.get(endPoints.gallery(id));
         return response.data;
     }
+    async editGallery(id, galleryData) {
+        const response = await http.put(endPoints.gallery(id), galleryData);
+        return response.data;
+    }
 }
 
 export default new GalleriesService();

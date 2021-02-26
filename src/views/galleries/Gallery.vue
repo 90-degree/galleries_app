@@ -1,14 +1,15 @@
 <template>
 	<div>
-		<h1>{{ gallery.title }}</h1>
+		<h1>{{ gallery.title || '' }}</h1>
 		<h4 @click="goToAuthor">{{ galleryAuthor }}</h4>
+		<router-link v-if="isOwner" class="nav-link" :to="'/edit-gallery/' + galleryId"> Edit </router-link>
 		<gallery-carousel :images="galleryImages"></gallery-carousel>
 	</div>
 </template>
 
 <script>
 import GalleryCarousel from '../../components/GalleryCarousel.vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
 	name: 'Gallery',
 	components: { GalleryCarousel },
@@ -24,6 +25,7 @@ export default {
 		};
 	},
 	computed: {
+		...mapGetters('auth', ['user']),
 		galleryId() {
 			return this.$route.params.id;
 		},
@@ -31,7 +33,10 @@ export default {
 			return this.gallery.image_urls.map((e) => e.url);
 		},
 		galleryAuthor() {
-			return `${this.gallery.user.first_name} ${this.gallery.user.last_name}`;
+			return `${this.gallery.user.first_name || ''} ${this.gallery.user.last_name || ''}`;
+		},
+		isOwner() {
+			return this.user.id === this.gallery.user_id;
 		},
 	},
 	methods: {

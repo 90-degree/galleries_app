@@ -20,5 +20,10 @@ export const actions = {
     async getGallery(context, id) {
         const response = await galleriesService.getGallery(id);
         return response;
-    }
+    },
+    async editGallery(context, params) {
+        console.log('a', params)
+        const response = await galleriesService.editGallery(params.id, params.data);
+        return response;
+    },
 }

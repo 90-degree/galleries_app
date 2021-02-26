@@ -16,7 +16,6 @@ export default {
 	name: 'GalleriesGridView',
 	components: { GalleriesGrid, Pagination, SearchForm },
 	computed: {
-		...mapGetters('auth', ['user']),
 		...mapGetters('galleries', ['galleries', 'isLastPage']),
 	},
 	methods: {

@@ -9,7 +9,7 @@ export const galleriesStore = {
         currentPage: 1,
         isLastPage: false,
         searchFilter: '',
-        authorFilter: 0
+        authorFilter: 0,
     },
     getters,
     mutations,

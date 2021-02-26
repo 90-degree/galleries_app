@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<create-gallery-form @submited="handleCreate"></create-gallery-form>
+		<create-gallery-form mode="Edit" @submited="handleEdit"></create-gallery-form>
 	</div>
 </template>
 
@@ -8,21 +8,24 @@
 import { mapGetters, mapActions } from 'vuex';
 import CreateGalleryForm from '../../components/CreateGalleryForm.vue';
 export default {
-	name: 'CreateGallery',
+	name: 'EditGallery',
 	components: {
 		CreateGalleryForm,
 	},
 	computed: {
 		...mapGetters('galleries', ['galleries']),
+		galleryId() {
+			return Number(this.$route.params.id);
+		},
 	},
 	methods: {
-		...mapActions('galleries', ['createNewGallery']),
-		async handleCreate(galleryData) {
+		...mapActions('galleries', ['editGallery', 'getGallery']),
+		async handleEdit(galleryData) {
 			try {
-				await this.createNewGallery(galleryData);
+				await this.editGallery({ id: this.galleryId, data: galleryData });
 				this.$router.push('/my-galleries');
 			} catch (error) {
-				console.log('create', error);
+				console.log('edit', error);
 			}
 		},
 	},
