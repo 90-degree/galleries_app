@@ -1,5 +1,6 @@
 import { http } from "./HTTP";
 import store from '../store'
+import router from '../router'
 
 const endPoints = {
     galleries: () => '/galleries',
@@ -20,8 +21,12 @@ class GalleriesService {
         return response.data;
     }
     async getGallery(id) {
-        const response = await http.get(endPoints.gallery(id));
-        return response.data;
+        try {
+            const response = await http.get(endPoints.gallery(id));
+            return response.data;
+        } catch (error) {
+            router.push({ name: 'PageNotFound' })
+        }
     }
     async editGallery(id, galleryData) {
         const response = await http.put(endPoints.gallery(id), galleryData);

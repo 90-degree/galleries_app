@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<h1>My Galleries</h1>
 		<galleries-grid-view></galleries-grid-view>
 	</div>
 </template>

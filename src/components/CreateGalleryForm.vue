@@ -120,6 +120,7 @@ export default {
 	async created() {
 		if (this.galleryId) {
 			this.formData = await this.getGallery(this.galleryId);
+			this.validation.image_urls = this.formData.image_urls.map((e) => !!e);
 		}
 	},
 };

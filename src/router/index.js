@@ -8,6 +8,7 @@ import CreateGallery from '../views/galleries/CreateGallery'
 import MyGalleries from '../views/galleries/MyGalleries'
 import AuthorGalleries from '../views/galleries/AuthorGalleries'
 import EditGallery from '../views/galleries/EditGallery'
+import PageNotFound from '../views/404'
 import { authGuard } from '../guards/authGuard'
 import { guestGuard } from '../guards/guestGuard'
 
@@ -63,6 +64,11 @@ const routes = [
     path: '/logout',
     name: 'logout',
     beforeEnter: authGuard
+  },
+  {
+    path: '*',
+    name: 'PageNotFound',
+    component: PageNotFound
   }
 ]
 

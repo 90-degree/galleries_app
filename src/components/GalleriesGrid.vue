@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1 v-if="!hasGalleries">No galleries</h1>
+		<h1 v-if="!hasGalleries" class="no-galleries">No galleries</h1>
 		<div class="row">
 			<div v-for="gallery in galleries" :key="gallery.id" class="col-sm-6 col-md-4">
 				<gallery-card :gallery="gallery"></gallery-card>
@@ -21,4 +21,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.no-galleries {
+	margin-top: 50px;
+}
+</style>

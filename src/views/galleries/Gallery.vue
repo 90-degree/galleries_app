@@ -57,7 +57,6 @@ export default {
 		async handleComment(commentData) {
 			const response = await this.createComment(commentData);
 			this.gallery.comments.push(response);
-			console.log(response);
 		},
 		async handleDeleteGallery() {
 			if (confirm('Do you really want to delete this gallery?')) {
@@ -75,7 +74,6 @@ export default {
 	async created() {
 		try {
 			this.gallery = await this.getGallery(this.galleryId);
-			console.log(this.gallery);
 		} catch (error) {
 			console.log('gallery get', error);
 		}

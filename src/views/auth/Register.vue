@@ -85,7 +85,7 @@ export default {
 				await this.register(this.formData);
 				this.$router.push('/');
 			} catch (error) {
-				console.log(error);
+				console.log('register', error);
 			}
 		},
 	},

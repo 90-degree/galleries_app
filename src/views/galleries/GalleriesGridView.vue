@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<search-form @onSearch="handleSearch"></search-form>
+		<search-form @onSearch="handleSearch" @onSearchCanceled="handleSearchCancel"></search-form>
 		<galleries-grid></galleries-grid>
 		<pagination @nextPage="handleNextPage" :isVisible="!isLastPage"></pagination>
 	</div>
@@ -26,6 +26,10 @@ export default {
 		},
 		async handleSearch(searchData) {
 			this.searchFilter(searchData);
+			await this.getGalleriesFirstPage();
+		},
+		async handleSearchCancel() {
+			this.searchFilter('');
 			await this.getGalleriesFirstPage();
 		},
 	},
