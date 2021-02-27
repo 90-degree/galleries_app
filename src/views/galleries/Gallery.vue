@@ -3,6 +3,7 @@
 		<h1>{{ gallery.title || '' }}</h1>
 		<h4 @click="goToAuthor">{{ galleryAuthor }}</h4>
 		<h4>{{ gallery.created_at | formatDateString }}</h4>
+		<p>{{ gallery.description }}</p>
 		<router-link v-if="isOwner" class="nav-link" :to="'/edit-gallery/' + galleryId"> Edit </router-link>
 		<button v-if="isOwner" @click="handleDeleteGallery" class="btn btn-danger" type="button">Delete Gallery</button>
 		<gallery-carousel :images="galleryImages"></gallery-carousel>
