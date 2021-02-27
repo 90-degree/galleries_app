@@ -7,5 +7,5 @@ export const formatDateString = (value) => {
 
 export const diffForHumans = (value) => {
     if (!value) return ''
-    return moment(value).startOf('hour').fromNow();
+    return moment(value).fromNow()
 }
