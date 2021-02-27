@@ -3,7 +3,7 @@
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item" :class="!index && 'active'" v-for="(url, index) in images" :key="index">
-					<img class="d-block w-100" :src="url" :alt="'slide ' + index + 1" />
+					<img @click="openImage(url)" class="d-block w-100" :src="url" :alt="'slide ' + index + 1" />
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -22,6 +22,11 @@
 export default {
 	name: 'gallery-carousel',
 	props: ['images'],
+	methods: {
+		openImage(url) {
+			window.open(url);
+		},
+	},
 };
 </script>
 

@@ -22,8 +22,19 @@ export const actions = {
         return response;
     },
     async editGallery(context, params) {
-        console.log('a', params)
         const response = await galleriesService.editGallery(params.id, params.data);
+        return response;
+    },
+    async createComment(context, commentData) {
+        const response = await galleriesService.createComment(commentData);
+        return response;
+    },
+    async deleteGallery(context, id) {
+        const response = await galleriesService.deleteGallery(id);
+        return response;
+    },
+    async deleteComment(context, id) {
+        const response = await galleriesService.deleteComment(id);
         return response;
     },
 }

@@ -3,7 +3,9 @@ import store from '../store'
 
 const endPoints = {
     galleries: () => '/galleries',
-    gallery: (id) => '/galleries/' + id
+    gallery: (id) => '/galleries/' + id,
+    comments: () => '/comments',
+    comment: (id) => '/comments/' + id
 }
 
 class GalleriesService {
@@ -23,6 +25,18 @@ class GalleriesService {
     }
     async editGallery(id, galleryData) {
         const response = await http.put(endPoints.gallery(id), galleryData);
+        return response.data;
+    }
+    async createComment(commentData) {
+        const response = await http.post(endPoints.comments(), commentData);
+        return response.data;
+    }
+    async deleteGallery(id) {
+        const response = await http.delete(endPoints.gallery(id));
+        return response.data;
+    }
+    async deleteComment(id) {
+        const response = await http.delete(endPoints.comment(id));
         return response.data;
     }
 }
